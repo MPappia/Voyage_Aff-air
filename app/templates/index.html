@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carte Thermique du Monde</title>
-    <!-- Inclure les bibliothèques Plotly -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
-    <h1>Carte Thermique du Monde</h1>
-    <!-- Div pour afficher la carte -->
-    <div id="map"></div>
-    
-    <!-- Script pour afficher la carte -->
-    <script>
-        var plot = document.getElementById('map');
-        <!-- Insérer la carte dans la div -->
-        {{ plot | safe }}
-    </script>
-</body>
-</html>
+<!-- templates/index.html -->
+
+{% extends "base.html" %}
+
+{% block title %}
+  Accueil - Mon Application
+{% endblock %}
+
+{% block content %}
+  <h1>Bienvenue sur notre application !</h1>
+  <p>Ceci est la page d'accueil de notre application.</p>
+  <p>Vous pouvez vous inscrire ou vous connecter pour accéder à davantage de fonctionnalités.</p>
+{% endblock %}

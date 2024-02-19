@@ -1,0 +1,21 @@
+<!-- templates/login.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Connexion</h2>
+  <form method="post" action="{{ url_for('login') }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.email.label(class="form-control-label") }}
+      {{ form.email(class="form-control form-control-lg", placeholder="Adresse email") }}
+    </div>
+    <div class="form-group">
+      {{ form.password.label(class="form-control-label") }}
+      {{ form.password(class="form-control form-control-lg", placeholder="Mot de passe") }}
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-primary btn-lg", value="Se connecter") }}
+    </div>
+  </form>
+{% endblock %}
