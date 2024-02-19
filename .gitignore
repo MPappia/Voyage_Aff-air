@@ -13,3 +13,6 @@ env_apprez/
 
 # Fichiers de dépendances Python
 __pycache__/
+
+# Image
+Logo.png
