@@ -7,16 +7,24 @@
   <form method="post" action="{{ url_for('register') }}">
     {{ form.hidden_tag() }}
     <div class="form-group">
-      {{ form.name.label(class="form-control-label") }}
-      {{ form.name(class="form-control form-control-lg", placeholder="Nom") }}
+      {{ form.prenom_user.label(class="form-control-label") }}
+      {{ form.prenom_user(class="form-control form-control-lg", placeholder="Prénom") }}
     </div>
     <div class="form-group">
-      {{ form.email.label(class="form-control-label") }}
-      {{ form.email(class="form-control form-control-lg", placeholder="Adresse email") }}
+      {{ form.nom_user.label(class="form-control-label") }}
+      {{ form.nom_user(class="form-control form-control-lg", placeholder="Nom") }}
     </div>
     <div class="form-group">
-      {{ form.password.label(class="form-control-label") }}
-      {{ form.password(class="form-control form-control-lg", placeholder="Mot de passe") }}
+      {{ form.email_user.label(class="form-control-label") }}
+      {{ form.email_user(class="form-control form-control-lg", placeholder="Adresse email") }}
+    </div>
+    <div class="form-group">
+      {{ form.pseudo_user.label(class="form-control-label") }}
+      {{ form.pseudo_user(class="form-control form-control-lg", placeholder="Pseudo") }}
+    </div>
+    <div class="form-group">
+      {{ form.password_user.label(class="form-control-label") }}
+      {{ form.password_user(class="form-control form-control-lg", placeholder="Mot de passe") }}
     </div>
     <div class="form-group">
       {{ form.confirm_password.label(class="form-control-label") }}

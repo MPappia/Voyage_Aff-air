@@ -14,10 +14,24 @@ def index():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        # Logique pour enregistrer l'utilisateur dans la base de données
+        # Récupérer les données du formulaire
+        prenom_user = form.prenom_user.data
+        nom_user = form.nom_user.data
+        email_user = form.email_user.data
+        pseudo_user = form.pseudo_user.data
+        password_user = form.password_user.data
+
+        # Insérer le code pour enregistrer l'utilisateur dans la base de données ici
+        # Par exemple, si vous utilisez SQLAlchemy :
+        # from app.models import User
+        # new_user = User(prenom=prenom_user, nom=nom_user, email=email_user, pseudo=pseudo_user, password=password_user)
+        # db.session.add(new_user)
+        # db.session.commit()
+
         flash('Félicitations, vous êtes maintenant inscrit !', 'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('login'))  # Rediriger vers la page de connexion après l'inscription réussie
     return render_template('register.html', title='Inscription', form=form)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
