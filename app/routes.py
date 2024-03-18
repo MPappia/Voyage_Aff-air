@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, flash, request
 from app import app, db
-from app.models.formulaire import RegistrationForm, LoginForm
+from app.formulaire import RegistrationForm, LoginForm
 from datetime import datetime
 import pandas as pd
 
