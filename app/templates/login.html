@@ -4,18 +4,22 @@
 
 {% block content %}
   <h2>Connexion</h2>
-  <form method="post" action="{{ url_for('login') }}">
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-      {{ form.email_user.label(class="form-control-label") }}
-      {{ form.email_user(class="form-control form-control-lg", placeholder="Adresse email") }}
-    </div>
-    <div class="form-group">
-      {{ form.password_user.label(class="form-control-label") }}
-      {{ form.password_user(class="form-control form-control-lg", placeholder="Mot de passe") }}
-    </div>
-    <div class="form-group">
-      {{ form.submit(class="btn btn-primary btn-lg", value="Se connecter") }}
-    </div>
-  </form>
+  <div class="form-container">
+    <form method="post" action="{{ url_for('login') }}">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        <label for="email" class="form-control-label text-center">Email</label>
+        <br>
+        {{ form.email_user(class="form-control form-control-lg", placeholder="Adresse email") }}
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-control-label text-center">Mot de passe</label>
+        <br>
+        {{ form.password_user(class="form-control form-control-lg", placeholder="Mot de passe") }}
+      </div>
+      <div class="form-group">
+        {{ form.submit(class="btn btn-primary btn-lg", value="Se connecter") }}
+      </div>
+    </form>
+  </div>
 {% endblock %}

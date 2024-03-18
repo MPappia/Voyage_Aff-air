@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Mon Application{% endblock %}</title>
   <!-- Inclure ici les liens vers les fichiers CSS, les bibliothèques JavaScript, etc. -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <header>
     <!-- En-tête de votre site -->
     <nav>
       <ul>
-        <li><a href="{{ url_for('login') }}">Accueil</a></li>
+        <li><a href="{{ url_for('index') }}">Accueil</a></li>
         <li><a href="{{ url_for('register') }}">Inscription</a></li>
         <li><a href="{{ url_for('login') }}">Connexion</a></li>
       </ul>
