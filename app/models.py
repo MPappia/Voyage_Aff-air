@@ -1,7 +1,7 @@
-# ..app import app, db
+#from ..app import app, db
 
-class (db.Model):
-    __tablename__ = ""
+#class (db.Model):
+#    __tablename__ = ""
 
 
 

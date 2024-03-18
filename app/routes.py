@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, flash, request
-from app import app
-from app.forms import RegistrationForm, LoginForm
+from app import app, db
+from app.models.formulaire import RegistrationForm, LoginForm
 from datetime import datetime
 import pandas as pd
 
@@ -33,15 +33,3 @@ def logout():
     # Logique pour déconnecter l'utilisateur
     flash('Vous êtes déconnecté !', 'success')
     return redirect(url_for('index'))
-
-df=pd.read_csv('data/prez_data.csv')
-
-@app.route('/visualisation')
-def visualisation():
-    page = request.args.get('page', 1, type=int)
-    elements_per_page = 50
-    debut = (page-1)*elements_per_page
-    fin = debut + elements_per_page
-    data_page = df.iloc[debut:fin]
-    nombre_pages = df.shape[0] // elements_per_page + 1 if df.shape[0] % elements_per_page != 0 else df.shape[0] // elements_per_page
-    return render_template('visualisation.html', title='Visualisation', data=data_page, page=page, nombre_pages=nombre_pages)
