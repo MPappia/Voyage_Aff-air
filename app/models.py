@@ -8,7 +8,7 @@ class _person_(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fonction = db.Column(db.String(45), nullable=False)
     nom = db.Column(db.String(45), nullable=False)
-    nationalite_code = db.Column(db.Integer, db.ForeignKey('pays.id'), nullable=False)
+    nationalite_code = db.Column(db.String(45), db.ForeignKey('pays.id'), nullable=False)
     Date_debut_mandat = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
     Date_fin = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
     parti = db.Column(db.String(45), nullable=True)
@@ -35,11 +35,14 @@ class _depla_etranger_F_(db.Model):
 
     # id = 
     # person_id = 
-    # pays_id =
+    pays_id = db.Column(db.Integer, db.ForeignKey('pays.id'), nullable=False)
     id = db.Column(db.Integer, primary_key=True)
     person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=False)
     pays_id = db.Column(db.Integer, db.ForeignKey('pays.id'), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+
+    people = relationship("_person_", back_populates="nationalite")
+
 
     def __repr__(self):
         return f"Depla_etranger_F('{self.id}', '{self.person_id}', '{self.pays_id}', '{self.date}')"
