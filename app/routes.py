@@ -1,6 +1,7 @@
 from flask import render_template, redirect, url_for, flash, request
 from app import app, db
 from app.models import User
+from flask_login import current_user, login_user, logout_user, login_required
 from app.formulaire import RegistrationForm, LoginForm
 from datetime import datetime
 import pandas as pd
@@ -38,6 +39,27 @@ def login():
 
 @app.route('/logout')
 def logout():
-    # Logique pour déconnecter l'utilisateur
-    flash('Vous êtes déconnecté !', 'success')
+    logout_user()
+    flash('You have been logged out.', 'success')
     return redirect(url_for('index'))
+
+@app.route('utilisateurs/connexion', methods=['GET', 'POST'])
+def connexion(): 
+    form = Connexion()
+
+    if current_user.is_authenticated is True:
+        flash('Vous êtes déjà connecté', 'info')
+        return redirect(url_for('index'))
+    
+    if form.validate_on_submit():
+        utilisateur = Users.identification(prenom=clean_arg(request.form.get("prenom", None)), password=clean_arg(request.form.get("password", None)))
+        if utilisateur: 
+            flash('Vous êtes connecté avec succès !', 'success')
+            login_user(utilisateur)
+            return redirect(url_for('index'))
+        else:
+            flash('Adresse e-mail ou mot de passe incorrect.', 'danger')
+            return render_template('connexion', form=form)
+    else:
+        return render_template('connexion', form=form)
+login.login_view = 'connexion'

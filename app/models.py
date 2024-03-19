@@ -1,6 +1,8 @@
-from app import app, db
+from app import app, db, login
 from datetime import datetime
 from sqlalchemy.orm import relationship
+from flask_login import UserMixin
+from werkzeug.security import check_password_hash
 
 class _person_(db.Model):
     __tablename__ = "Person"
@@ -133,9 +135,8 @@ class _continent_(db.Model):
 
 
 #models utilisateurs / authentification
-    
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     id_user = db.Column(db.Integer, primary_key=True)
     nom_user = db.Column(db.String(35))
     prenom_user = db.Column(db.String(35))
@@ -144,9 +145,22 @@ class User(db.Model):
     password_user = db.Column(db.String(35), nullable=False)
     id_role = db.Column(db.Integer, db.ForeignKey('role.id_role'))
 
+    def get_id(self):
+        return self.id_user
+    @login.user_loader
+    def get_user_by_id(id):
+        return User.query.get(int(id))
+    @staticmethod
+    def identification(pseudo_user, password_user):
+        user = User.query.filter_by(pseudo_user=pseudo_user).first()
+        if user and user.password_user == password_user:
+            return user
+        return None
+        
 
 class Role(db.Model):
     id_role = db.Column(db.Integer, primary_key=True)
     role = db.Column(db.String(35))
     is_admin = db.Column(db.Boolean, default=False)
     description = db.Column(db.String(35))
+

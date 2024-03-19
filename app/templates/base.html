@@ -17,6 +17,9 @@
         <li><a href="{{ url_for('index') }}">Accueil</a></li>
         <li><a href="{{ url_for('register') }}">Inscription</a></li>
         <li><a href="{{ url_for('login') }}">Connexion</a></li>
+        {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('logout') }}">Log out</a></li>
+        {% else %}
       </ul>
     </nav>
   </header>
