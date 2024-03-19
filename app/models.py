@@ -82,6 +82,8 @@ class _pays_(db.Model):
     nom = db.Column(db.String(45), nullable=False)
     Continent_id = db.Column(db.Integer, db.ForeignKey('Continent.id'), nullable=False)
 
+    continent = relationship("_continent_", back_populates="countries")
+
     def __repr__(self):
         return f"pays('{self.id}', '{self.nom}', '{self.Continent_id}')"
 
@@ -90,6 +92,8 @@ class _continent_(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(45), nullable=False)
+
+    countries = relationship("_pays_", back_populates="continent")
 
     def __repr__(self):
         return f"Continent('{self.id}', '{self.nom}')"
