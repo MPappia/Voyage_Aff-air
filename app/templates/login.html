@@ -8,9 +8,9 @@
     <form method="post" action="{{ url_for('login') }}">
       {{ form.hidden_tag() }}
       <div class="form-group">
-        <label for="email" class="form-control-label text-center">Email</label>
+        <label for="pseudo" class="form-control-label text-center">Pseudo</label>
         <br>
-        {{ form.email_user(class="form-control form-control-lg", placeholder="Adresse email") }}
+        {{ form.pseudo_user(class="form-control form-control-lg", placeholder="Pseudo") }}
       </div>
       <div class="form-group">
         <label for="password" class="form-control-label text-center">Mot de passe</label>

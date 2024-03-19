@@ -2,6 +2,7 @@ from app import db, login_manager
 from datetime import datetime
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
+from werkzeug.security import generate_password_hash
 
 class _person_(db.Model):
     __tablename__ = "Person"
@@ -135,29 +136,50 @@ class _continent_(db.Model):
 
 #models utilisateurs / authentification
 
-class User(UserMixin, db.Model):
-    id_user = db.Column(db.Integer, primary_key=True)
-    nom_user = db.Column(db.String(35))
-    prenom_user = db.Column(db.String(35))
+class Users(UserMixin, db.Model):
+    id_user = db.Column(db.Integer, unique=True, primary_key=True)
     email_user = db.Column(db.String(35), unique=True, nullable=False)
     pseudo_user = db.Column(db.String(35), unique=True, nullable=False)
     password_user = db.Column(db.String(35), nullable=False)
     id_role = db.Column(db.Integer, db.ForeignKey('role.id_role'))
 
-    def get_id(self):
-        return self.id_user
-    
     @staticmethod
-    def identification(pseudo_user, password_user):
-        user = User.query.filter_by(pseudo_user=pseudo_user).first()
+    def ajout(email_user, pseudo_user, password_user):
+        erreurs = []
+        if not email_user:
+            erreurs.append("L'email est vide")
+        if not pseudo_user:
+            erreurs.append("Le pseudo est vide")
+        if not password_user or len(password_user) < 6:
+            erreurs.append("Le mot de passe est vide ou trop court")
+
+        unique = Users.query.filter(
+            db.or_(Users.email_user == email_user, Users.pseudo_user == pseudo_user)
+        ).count()
+        if unique > 0:
+            erreurs.append("L'email ou le pseudo existe déjà")
+
+        if len(erreurs) > 0:
+            return False, erreurs
+        
+        utilisateur = Users(
+            email_user=email_user,
+            pseudo_user=pseudo_user,
+            password_user=generate_password_hash(password_user)
+        )
+
+        try:
+            db.session.add(utilisateur)
+            db.session.commit()
+            return True, utilisateur
+        except Exception as erreur:
+            return False, [str(erreur)]
+        
+    def identification(pseudo_user, password_user):  # Modifier cette méthode
+        user = Users.query.filter_by(pseudo_user=pseudo_user).first()
         if user and user.password_user == password_user:
             return user
         return None
-    
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
-        
 
 class Role(db.Model):
     id_role = db.Column(db.Integer, primary_key=True)

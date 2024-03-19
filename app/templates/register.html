@@ -8,18 +8,6 @@
     <form method="post" action="{{ url_for('register') }}">
       {{ form.hidden_tag() }}
       <div class="form-group">
-        {{ form.prenom_user.label(class="form-control-label") }}
-        {{ form.prenom_user(class="form-control form-control-lg", placeholder="Prénom") }}
-      </div>
-      <div class="form-group">
-        {{ form.nom_user.label(class="form-control-label") }}
-        {{ form.nom_user(class="form-control form-control-lg", placeholder="Nom") }}
-      </div>
-      <div class="form-group">
-        {{ form.email_user.label(class="form-control-label") }}
-        {{ form.email_user(class="form-control form-control-lg", placeholder="Adresse email") }}
-      </div>
-      <div class="form-group">
         {{ form.pseudo_user.label(class="form-control-label") }}
         {{ form.pseudo_user(class="form-control form-control-lg", placeholder="Pseudo") }}
       </div>
