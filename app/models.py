@@ -32,16 +32,13 @@ class _mairie_services_(db.Model):
 
 class _depla_etranger_F_(db.Model):
     __tablename__ = "Depla_etranger_F"
-
-    # id = 
-    # person_id = 
-    pays_id = db.Column(db.Integer, db.ForeignKey('pays.id'), nullable=False)
+    
     id = db.Column(db.Integer, primary_key=True)
     person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=False)
     pays_id = db.Column(db.Integer, db.ForeignKey('pays.id'), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
-    people = relationship("_person_", back_populates="nationalite")
+    depla_to_pays = relationship("_pays_", back_populates="pays_to_depla")
 
 
     def __repr__(self):
@@ -90,6 +87,7 @@ class _pays_(db.Model):
 
     continent = relationship("_continent_", back_populates="countries")
     people = relationship("_person_", back_populates="nationalite")
+    pays_to_depla = relationship("_depla_etranger_F_", back_populates="depla_to_pays")
 
     def __repr__(self):
         return f"pays('{self.id}', '{self.nom}', '{self.Continent_id}')"
