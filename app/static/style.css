@@ -66,6 +66,12 @@ body {
   height: auto; /* Cela garantit que la hauteur est ajustée proportionnellement à la largeur */
 }
 
+  /* index */
+
+  .text-center {
+    text-align: center;
+  }
+
 /* Connexion / Inscription */
 .form-container {
   width: 300px;

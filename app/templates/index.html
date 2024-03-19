@@ -7,10 +7,12 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Bienvenue sur notre application !</h1>
-  <div class="container">
-    <img src="{{ url_for('static', filename='img/Logo.png') }}" alt="Logo" class="logo">
+  <div class="text-center"> <!-- Ajout de la classe text-center pour centrer le contenu horizontalement -->
+    <h1>Bienvenue sur notre application !</h1>
+    <div class="container">
+      <img src="{{ url_for('static', filename='img/Logo.png') }}" alt="Logo" class="logo">
+    </div>
+    <p>Ceci est la page d'accueil de notre application.</p>
+    <p>Vous pouvez vous inscrire ou vous connecter pour accéder à davantage de fonctionnalités.</p>
   </div>
-  <p>Ceci est la page d'accueil de notre application.</p>
-  <p>Vous pouvez vous inscrire ou vous connecter pour accéder à davantage de fonctionnalités.</p>
 {% endblock %}
