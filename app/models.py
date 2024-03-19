@@ -18,6 +18,7 @@ class _person_(db.Model):
     person_to_depla = relationship("_depla_etranger_F_", back_populates="depla_to_person")
     person_to_depla_A = relationship("_depla_etranger_A_", back_populates="depla_A_to_person")
     person_to_depla_F = relationship("_depla_domicile_F_", back_populates="depla_F_to_person")
+    person_to_mairie_service = relationship("_mairie_services_", back_populates="mairie_service_to_person")
     
     def __repr__(self):
         return f"Person('{self.id}', '{self.fonction}', '{self.nom}', '{self.Date_debut_mandat}', '{self.Date_fin}', '{self.parti}')"
@@ -25,11 +26,15 @@ class _person_(db.Model):
 class _mairie_services_(db.Model):
     __tablename__ = "Mairie_Services"
 
-    # Person_id =
-    # Ville_id = 
+    Person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=True)
+    ville_id = db.Column(db.Integer, db.ForeignKey('Ville.id'), nullable=True)
     id = db.Column(db.Integer, primary_key=True)
     date_debut_service = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
     date_fin_service = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
+
+    # Relation
+    mairie_service_to_ville = relationship("_ville_", back_populates="ville_to_mairie_service")
+    mairie_service_to_person = relationship("_person_", back_populates="person_to_mairie_service")
 
     def __repr__(self):
         return f"Mairie_services('{self.id}', '{self.date_debut_service}', '{self.date_fin_service}')"
@@ -90,6 +95,7 @@ class _ville_(db.Model):
 
     # Relations 
     ville_to_deplace_F = relationship("_depla_domicile_F_", back_populates="depla_F_to_ville")
+    ville_to_mairie_service = relationship("_mairie_services_", back_populates="mairie_service_to_ville")
     
     def __repr__(self):
         return f"Ville('{self.id}', '{self.nom}')"
