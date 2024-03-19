@@ -19,7 +19,7 @@
         <li><a href="{{ url_for('login') }}">Connexion</a></li>
         {% if current_user.is_authenticated %}
         <li><a href="{{ url_for('logout') }}">Log out</a></li>
-        {% else %}
+        {% endif %}
       </ul>
     </nav>
   </header>

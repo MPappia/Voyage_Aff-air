@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, flash, request
-from app import app, db
+from app import app, db, login_manager
 from app.models import User
 from flask_login import current_user, login_user, logout_user, login_required
 from app.formulaire import RegistrationForm, LoginForm
@@ -43,7 +43,7 @@ def logout():
     flash('You have been logged out.', 'success')
     return redirect(url_for('index'))
 
-@app.route('utilisateurs/connexion', methods=['GET', 'POST'])
+@app.route('/utilisateurs/connexion', methods=['GET', 'POST'])
 def connexion(): 
     form = Connexion()
 
@@ -63,3 +63,7 @@ def connexion():
     else:
         return render_template('connexion', form=form)
 login.login_view = 'connexion'
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))

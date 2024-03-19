@@ -1,8 +1,7 @@
-from app import app, db, login
+from app import db, login_manager
 from datetime import datetime
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
-from werkzeug.security import check_password_hash
 
 class _person_(db.Model):
     __tablename__ = "Person"
@@ -147,15 +146,17 @@ class User(UserMixin, db.Model):
 
     def get_id(self):
         return self.id_user
-    @login.user_loader
-    def get_user_by_id(id):
-        return User.query.get(int(id))
+    
     @staticmethod
     def identification(pseudo_user, password_user):
         user = User.query.filter_by(pseudo_user=pseudo_user).first()
         if user and user.password_user == password_user:
             return user
         return None
+    
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
         
 
 class Role(db.Model):
@@ -163,4 +164,3 @@ class Role(db.Model):
     role = db.Column(db.String(35))
     is_admin = db.Column(db.Boolean, default=False)
     description = db.Column(db.String(35))
-
