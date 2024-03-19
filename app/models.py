@@ -7,10 +7,12 @@ class _person_(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fonction = db.Column(db.String(45), nullable=False)
     nom = db.Column(db.String(45), nullable=False)
-    # nationalite_code = db.Column
+    nationalite_code = db.Column(db.Integer, db.ForeignKey('pays.id'), nullable=False)
     Date_debut_mandat = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
     Date_fin = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
     parti = db.Column(db.String(45), nullable=True)
+
+    nationalite = relationship("_pays_", back_populates="people")
 
     def __repr__(self):
         return f"Person('{self.id}', '{self.fonction}', '{self.nom}', '{self.Date_debut_mandat}', '{self.Date_fin}', '{self.parti}')"
@@ -83,6 +85,7 @@ class _pays_(db.Model):
     Continent_id = db.Column(db.Integer, db.ForeignKey('Continent.id'), nullable=False)
 
     continent = relationship("_continent_", back_populates="countries")
+    people = relationship("_person_", back_populates="nationalite")
 
     def __repr__(self):
         return f"pays('{self.id}', '{self.nom}', '{self.Continent_id}')"
