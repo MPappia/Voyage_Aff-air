@@ -1,24 +1,20 @@
-<!-- templates/login.html -->
-
 {% extends "base.html" %}
 
 {% block content %}
   <h2>Connexion</h2>
   <div class="form-container">
-    <form method="post" action="{{ url_for('login') }}">
+    <form method="post" action="{{ url_for('login') }}" class="login-form">
       {{ form.hidden_tag() }}
       <div class="form-group">
-        <label for="pseudo" class="form-control-label text-center">Pseudo</label>
-        <br>
-        {{ form.pseudo_user(class="form-control form-control-lg", placeholder="Pseudo") }}
+        <label for="pseudo">Pseudo</label>
+        <input type="text" id="pseudo" name="pseudo" class="form-control form-control-lg" placeholder="Pseudo" required>
       </div>
       <div class="form-group">
-        <label for="password" class="form-control-label text-center">Mot de passe</label>
-        <br>
-        {{ form.password_user(class="form-control form-control-lg", placeholder="Mot de passe") }}
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Mot de passe" required>
       </div>
       <div class="form-group">
-        {{ form.submit(class="btn btn-primary btn-lg", value="Se connecter") }}
+        <input type="submit" class="btn btn-primary btn-lg" value="Se connecter">
       </div>
     </form>
   </div>

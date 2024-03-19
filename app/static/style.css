@@ -53,63 +53,6 @@ body {
     padding: 10px 0;
     text-align: center;
   }
-  /* styles.css */
-
-/* Formulaire d'inscription */
-.form-container {
-    max-width: 400px;
-    margin: 0 auto; /* Cette règle centre le conteneur horizontalement */
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  /* Centre le bouton d'inscription */
-  .form-group:last-child {
-    text-align: center;
-  }
-  
-  /* styles.css */
-
-/* Formulaire de connexion */
-.form-container {
-    max-width: 400px;
-    margin: 0 auto; /* Cette règle centre le conteneur horizontalement */
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  /* Centre le bouton de connexion */
-  .form-group:last-child {
-    text-align: center;
-  }
-label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-  
-  input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #c0392b;
-  }
-
 
   /* images */
 
@@ -122,4 +65,44 @@ label {
 .logo {
   width: 170px; /* Définissez la taille de votre logo */
   height: auto; /* Cela garantit que la hauteur est ajustée proportionnellement à la largeur */
+}
+
+/* Connexion / Inscription */
+.form-container {
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 20px;;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group {
+  margin-top: 10px;
+}
+
+label {
+  display: block;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 95%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
 }
