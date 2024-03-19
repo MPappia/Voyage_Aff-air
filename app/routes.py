@@ -8,6 +8,17 @@ from app.utils.transformations import clean_arg
 import pandas as pd
 
 
+#erreurs 
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('erreurs/404.html'), 404
+
+@app.errorhandler(500)
+@app.errorhandler(503)
+def internal_error(error):
+    db.session.rollback()
+    return render_template('erreurs/500.html'), 500
+
 @app.route('/')
 def index():
     year = datetime.now().year
