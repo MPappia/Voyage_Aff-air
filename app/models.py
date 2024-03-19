@@ -8,7 +8,7 @@ class _person_(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fonction = db.Column(db.String(45), nullable=False)
     nom = db.Column(db.String(45), nullable=False)
-    nationalite_code = db.Column(db.String(45), db.ForeignKey('pays.id'), nullable=False)
+    nationalite_code = db.Column(db.String(45), db.ForeignKey('pays.id'), primary_key=True)
     Date_debut_mandat = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
     Date_fin = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
     parti = db.Column(db.String(45), nullable=True)
@@ -38,8 +38,8 @@ class _depla_etranger_F_(db.Model):
     __tablename__ = "Depla_etranger_F"
     
     id = db.Column(db.Integer, primary_key=True)
-    person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=False)
-    pays_id = db.Column(db.Integer, db.ForeignKey('pays.id'), nullable=False)
+    person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), primary_key=True)
+    pays_id = db.Column(db.Integer, db.ForeignKey('pays.id'), primary_key=True)
     date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
     # Relations
@@ -55,8 +55,8 @@ class _depla_etranger_A_(db.Model):
     __tablename__ = "Depla_etranger_A"
 
     id = db.Column(db.Integer, primary_key=True)
-    person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=False)
-    pays_id = db.Column(db.Integer, db.ForeignKey('pays.id'), nullable=False)
+    person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), primary_key=True)
+    pays_id = db.Column(db.Integer, db.ForeignKey('pays.id'), primary_key=True)
     date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
     # Relations
@@ -70,8 +70,8 @@ class _depla_domicile_F_(db.Model):
     __tablename__ = "Depla_domicile_F"
 
     id = db.Column(db.Integer, primary_key=True)
-    person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=False)
-    ville_id = db.Column(db.Integer, db.ForeignKey('Ville.id'), nullable=False)
+    person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), primary_key=True)
+    ville_id = db.Column(db.Integer, db.ForeignKey('Ville.id'), primary_key=True)
     date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     mairie_id = db.Column(db.Integer, db.ForeignKey('Mairie_Services.id'), nullable=False)
 
@@ -100,7 +100,7 @@ class _pays_(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(45), nullable=False)
-    Continent_id = db.Column(db.Integer, db.ForeignKey('Continent.id'), nullable=False)
+    Continent_id = db.Column(db.Integer, db.ForeignKey('Continent.id'), primary_key=True)
 
     # Relations
     continent = relationship("_continent_", back_populates="countries")
