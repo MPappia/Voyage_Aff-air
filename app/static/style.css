@@ -48,9 +48,8 @@ body {
   
   /* Pied de page */
   footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
+    color: #333;
+    margin: 400px 0 50px 0;
     text-align: center;
   }
 
