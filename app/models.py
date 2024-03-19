@@ -17,7 +17,8 @@ class _person_(db.Model):
     nationalite = relationship("_pays_", back_populates="people")
     person_to_depla = relationship("_depla_etranger_F_", back_populates="depla_to_person")
     person_to_depla_A = relationship("_depla_etranger_A_", back_populates="depla_A_to_person")
-
+    person_to_depla_F = relationship("_depla_domicile_F_", back_populates="depla_F_to_person")
+    
     def __repr__(self):
         return f"Person('{self.id}', '{self.fonction}', '{self.nom}', '{self.Date_debut_mandat}', '{self.Date_fin}', '{self.parti}')"
 
@@ -74,6 +75,10 @@ class _depla_domicile_F_(db.Model):
     date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     mairie_id = db.Column(db.Integer, db.ForeignKey('Mairie_Services.id'), nullable=False)
 
+    # relations 
+    depla_F_to_person = relationship("_person_", back_populates="person_to_depla_F")
+    depla_F_to_ville = relationship("_ville_", back_populates="ville_to_deplace_F")
+    
     def __repr__(self):
         return f"Depla_domicile_F('{self.id}', '{self.person_id}', '{self.ville_id}', '{self.date}', '{self.mairie_id}')"
     
@@ -82,6 +87,9 @@ class _ville_(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(45), nullable=False)
+
+    # Relations 
+    ville_to_deplace_F = relationship("_depla_domicile_F_", back_populates="depla_F_to_ville")
     
     def __repr__(self):
         return f"Ville('{self.id}', '{self.nom}')"
