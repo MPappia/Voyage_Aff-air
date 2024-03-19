@@ -3,7 +3,7 @@
 /* Mise en page générale */
 body {
     font-family: 'Courier New', Courier, monospace;
-    background-color: #f7f7f7;
+    background-color: rgb(255, 255, 255);
     color: #333;
   }
   
@@ -109,3 +109,17 @@ label {
   input[type="submit"]:hover {
     background-color: #c0392b;
   }
+
+
+  /* images */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 170px; /* Définissez la taille de votre logo */
+  height: auto; /* Cela garantit que la hauteur est ajustée proportionnellement à la largeur */
+}
