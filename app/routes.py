@@ -55,27 +55,6 @@ def logout():
     flash('You have been logged out.', 'success')
     return redirect(url_for('index'))
 
-@app.route('/utilisateurs/connexion', methods=['GET', 'POST'])
-def connexion(): 
-    form = Connexion()
-
-    if current_user.is_authenticated is True:
-        flash('Vous êtes déjà connecté', 'info')
-        return redirect(url_for('index'))
-    
-    if form.validate_on_submit():
-        utilisateur = Users.identification(prenom=clean_arg(request.form.get("prenom", None)), password=clean_arg(request.form.get("password", None)))
-        if utilisateur: 
-            flash('Vous êtes connecté avec succès !', 'success')
-            login_user(utilisateur)
-            return redirect(url_for('index'))
-        else:
-            flash('Adresse e-mail ou mot de passe incorrect.', 'danger')
-            return render_template('connexion', form=form)
-    else:
-        return render_template('connexion', form=form)
-login.login_view = 'connexion'
-
 @login_manager.user_loader
 def load_user(user_id):
     return Users.query.get(int(user_id))
