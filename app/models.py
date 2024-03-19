@@ -1,5 +1,6 @@
 from app import app, db
 from datetime import datetime
+from sqlalchemy.orm import relationship
 
 class _person_(db.Model):
     __tablename__ = "Person"
@@ -100,3 +101,23 @@ class _continent_(db.Model):
 
     def __repr__(self):
         return f"Continent('{self.id}', '{self.nom}')"
+
+
+#models utilisateurs / authentification
+    
+
+class User(db.Model):
+    id_user = db.Column(db.Integer, primary_key=True)
+    nom_user = db.Column(db.String(35))
+    prenom_user = db.Column(db.String(35))
+    email_user = db.Column(db.String(35), unique=True, nullable=False)
+    pseudo_user = db.Column(db.String(35), unique=True, nullable=False)
+    password_user = db.Column(db.String(35), nullable=False)
+    id_role = db.Column(db.Integer, db.ForeignKey('role.id_role'))
+
+
+class Role(db.Model):
+    id_role = db.Column(db.Integer, primary_key=True)
+    role = db.Column(db.String(35))
+    is_admin = db.Column(db.Boolean, default=False)
+    description = db.Column(db.String(35))
