@@ -20,7 +20,7 @@ class _person_(db.Model):
     person_to_depla = relationship("_depla_etranger_F_", back_populates="depla_to_person")
     person_to_depla_A = relationship("_depla_etranger_A_", back_populates="depla_A_to_person")
     person_to_depla_F = relationship("_depla_domicile_F_", back_populates="depla_F_to_person", uselist=False)
-    person_to_depla_F_optional = relationship("_depla_domicile_F_", back_populates="depla_F_to_person", uselist=False)
+    person_to_depla_F_optional = relationship("_depla_domicile_F_", back_populates="depla_F_to_person_optional", uselist=False, overlaps="person_to_depla_F")
     person_to_mairie_service = relationship("_mairie_services_", back_populates="mairie_service_to_person")
     
     def __repr__(self):
@@ -84,7 +84,7 @@ class _depla_domicile_F_(db.Model):
     mairie_id = db.Column(db.Integer, db.ForeignKey('Mairie_Services.id'), nullable=False)
 
     # relations 
-    depla_F_to_person_optional = relationship("_person_", back_populates="person_to_depla_F", uselist=False)
+    depla_F_to_person_optional = relationship("_person_", back_populates="person_to_depla_F_optional", uselist=False, overlaps="depla_F_to_person")
     depla_F_to_person = relationship("_person_", back_populates="person_to_depla_F", uselist=False)
     depla_F_to_ville = relationship("_ville_", back_populates="ville_to_deplace_F")
     

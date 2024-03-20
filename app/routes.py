@@ -28,6 +28,13 @@ def index():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
+        # Vérifier si le pseudo utilisateur est déjà pris
+        existing_user = users.query.filter_by(pseudo_user=form.pseudo_user.data).first()
+        if existing_user:
+            flash('Le pseudo est déjà pris. Veuillez choisir un autre pseudo.', 'danger')
+            return render_template('register.html', title='Inscription', form=form)
+        
+        # Si le pseudo n'est pas déjà pris, ajouter l'utilisateur à la base de données
         user = users(pseudo_user=form.pseudo_user.data, email_user=form.email_user.data,
                     password_user=form.password_user.data, id_role=1)  # Ajoutez l'ID du rôle approprié
         db.session.add(user)

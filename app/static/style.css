@@ -2,81 +2,72 @@
 
 /* Mise en page générale */
 body {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(255, 255, 255);
-    color: #333;
-  }
-  
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  /* Navigation */
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  nav ul li {
-    margin-right: 20px;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  nav ul li a:hover {
-    color: #c0392b;
-  }
-  
-  /* En-tête */
-  header {
-    background-color: #fefefe;
-    padding: 10px 0;
-    border-bottom: 2px solid #333;
-  }
-  
-  header nav {
-    text-align: right;
-  }
-  
-  /* Pied de page */
-  footer {
-    color: #333;
-    margin: 400px 0 50px 0;
-    text-align: center;
-  }
-
-  /* images */
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #f1b180; /* Couleur de fond saumon */
+  color: #fff; /* Texte en blanc */
 }
 
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navigation */
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #ffffff; /* Texte en blanc */
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #c0392b;
+}
+
+/* En-tête */
+header {
+  background-color: #b2545400;
+  padding: 10px 0;
+}
+
+header nav {
+  text-align: right;
+}
+
+/* Pied de page */
+footer {
+  color: #333;
+  margin: 400px 0 50px 0;
+  text-align: center;
+}
+
+/* Images */
 .logo {
   width: 170px; /* Définissez la taille de votre logo */
   height: auto; /* Cela garantit que la hauteur est ajustée proportionnellement à la largeur */
 }
 
-  /* index */
-
-  .text-center {
-    text-align: center;
-  }
+/* Index */
+.text-center {
+  text-align: center;
+}
 
 /* Connexion / Inscription */
 .form-container {
   width: 300px;
   margin: 0 auto;
-  margin-bottom: 20px;;
+  margin-bottom: 20px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -110,4 +101,55 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: #45a049;
+}
+
+/* Page d'erreur */
+.error-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.error-container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: whitesmoke;
+}
+
+p {
+  font-size: 18px;
+  color: whitesmoke;
+  margin-bottom: 50px;
+}
+
+img {
+  max-width: 30%; /* Réduire la largeur de l'image à 30% */
+  height: auto;
+  margin: 0;
+}
+
+.image-caption {
+  margin-top: 0;
+  color: white;
+  font-size: 8px;
+  font-style: italic;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+a:hover {
+  background-color: #fff;
+  color: #f1b180;
 }

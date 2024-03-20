@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page non trouvée</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="error-page">
     <div class="error-container">
         <h1>404 - Page non trouvée</h1>
         <p>La page demandée n'existe pas</p>
-        <img "{{ url_for('static', filename='img/chirac_404.jpg') }}" alt="Image d'erreur">
+        <img src="{{ url_for('static', filename='img/chirac_404.jpg') }}" alt="Votre image">
         <p class="image-caption">&copy;ABACA</p>
         <p><a href="/">Retour à l'accueil</a></p>
     </div>
