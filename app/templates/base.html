@@ -17,10 +17,12 @@
         <li><a href="{{ url_for('index') }}">Accueil</a></li>
         <li><a href="{{ url_for('login') }}">Connexion</a></li>
         <li><a href="{{ url_for('register') }}">Inscription</a></li>
-        <li><a class="nav-link" href="#">{{ current_user.username }}</a></li>
-        {% if current_user.is_authenticated %}
-        <li><a href="{{ url_for('logout') }}">Deconnexion</a></li>
-        {% endif %}
+        <div class="current_user">
+          {% if current_user.is_authenticated %}
+          <li><a class="nav-link" href="#">{{ current_user.username }}</a></li>
+          <li><a href="{{ url_for('logout') }}">Deconnexion</a></li>
+          {% endif %}
+        </div>
       </ul>
     </nav>
   </header>
