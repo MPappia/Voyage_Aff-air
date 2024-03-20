@@ -153,7 +153,7 @@ class users(db.Model):
         if not password_user or len(password_user) < 6:
             erreurs.append("Le mot de passe est vide ou trop court")
 
-        unique = Users.query.filter(
+        unique = users.query.filter(
             db.or_(users.email_user == email_user, users.pseudo_user == pseudo_user)
         ).count()
         if unique > 0:

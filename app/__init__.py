@@ -3,6 +3,8 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -19,3 +21,25 @@ from app import routes, models  # Importations après l'initialisation de l'appl
 
 # Configurations spécifiques à la connexion
 login_manager.login_view = 'login'  # par exemple
+
+#TEST ADMIN
+
+# Importez vos modèles après avoir initialisé db et login_manager
+from app.models import users as User
+
+# Déplacez l'importation de users et la création de la vue d'administration ici
+def init_admin():
+    admin = Admin(app, name='Dashboard', template_mode='bootstrap3')
+
+    class UserAdminView(ModelView):
+        column_list = ('id', 'pseudo_user', 'email_user')
+        form_columns = ('pseudo_user', 'email_user', 'password_user', 'id_role')
+
+    admin.add_view(UserAdminView(User, db.session))
+
+# Appelez init_admin pour initialiser l'interface d'administration
+init_admin()
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
