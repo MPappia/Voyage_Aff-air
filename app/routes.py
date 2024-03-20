@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, flash, request
 from app import app, db, login_manager
-from app.models import Users
+from app.models import users
 from flask_login import current_user, login_user, logout_user, login_required
 from app.formulaire import RegistrationForm, LoginForm
 from datetime import datetime
@@ -28,8 +28,7 @@ def index():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = Users(nom_user=form.nom_user.data, prenom_user=form.prenom_user.data,
-                    email_user=form.email_user.data, pseudo_user=form.pseudo_user.data,
+        user = users(pseudo_user=form.pseudo_user.data, email_user=form.email_user.data,
                     password_user=form.password_user.data, id_role=1)  # Ajoutez l'ID du rôle approprié
         db.session.add(user)
         db.session.commit()
@@ -41,7 +40,7 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = Users.query.filter_by(pseudo_user=form.pseudo_user.data).first()
+        user = users.query.filter_by(pseudo_user=form.pseudo_user.data).first()
         if user and user.password_user == form.password_user.data:
             flash('Vous êtes connecté avec succès !', 'success')
             return redirect(url_for('index'))
@@ -57,4 +56,4 @@ def logout():
 
 @login_manager.user_loader
 def load_user(user_id):
-    return Users.query.get(int(user_id))
+    return users.query.get(int(user_id))

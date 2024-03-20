@@ -7,7 +7,7 @@ from flask_login import LoginManager
 app = Flask(__name__)
 app.config.from_object(Config)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/projet.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projet2.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -19,3 +19,7 @@ from app import routes, models  # Importations après l'initialisation de l'appl
 
 # Configurations spécifiques à la connexion
 login_manager.login_view = 'login'  # par exemple
+
+# Créer les tables dans la base de données
+with app.app_context():
+    db.create_all()

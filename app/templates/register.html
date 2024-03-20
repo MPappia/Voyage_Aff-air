@@ -12,6 +12,10 @@
         {{ form.pseudo_user(class="form-control form-control-lg", placeholder="Pseudo") }}
       </div>
       <div class="form-group">
+        {{ form.email_user.label(class="form-control-label") }}
+        {{ form.email_user(class="form-control form-control-lg", placeholder="Email") }}
+      </div>
+      <div class="form-group">
         {{ form.password_user.label(class="form-control-label") }}
         {{ form.password_user(class="form-control form-control-lg", placeholder="Mot de passe") }}
       </div>

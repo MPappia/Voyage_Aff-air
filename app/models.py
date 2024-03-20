@@ -136,12 +136,12 @@ class _continent_(db.Model):
 
 #models utilisateurs / authentification
 
-class Users(UserMixin, db.Model):
-    id_user = db.Column(db.Integer, unique=True, primary_key=True)
-    email_user = db.Column(db.String(35), unique=True, nullable=False)
-    pseudo_user = db.Column(db.String(35), unique=True, nullable=False)
-    password_user = db.Column(db.String(35), nullable=False)
-    id_role = db.Column(db.Integer, db.ForeignKey('role.id_role'))
+class users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email_user = db.Column(db.String(120), unique=True, nullable=False)
+    pseudo_user = db.Column(db.String(64), unique=True, nullable=False)
+    password_user = db.Column(db.String(128), nullable=False)
+    id_role = db.Column(db.Integer, db.ForeignKey('role.id'))
 
     @staticmethod
     def ajout(email_user, pseudo_user, password_user):
@@ -154,7 +154,7 @@ class Users(UserMixin, db.Model):
             erreurs.append("Le mot de passe est vide ou trop court")
 
         unique = Users.query.filter(
-            db.or_(Users.email_user == email_user, Users.pseudo_user == pseudo_user)
+            db.or_(users.email_user == email_user, users.pseudo_user == pseudo_user)
         ).count()
         if unique > 0:
             erreurs.append("L'email ou le pseudo existe déjà")
@@ -162,7 +162,7 @@ class Users(UserMixin, db.Model):
         if len(erreurs) > 0:
             return False, erreurs
         
-        utilisateur = Users(
+        utilisateur = users(
             email_user=email_user,
             pseudo_user=pseudo_user,
             password_user=generate_password_hash(password_user)
@@ -176,13 +176,13 @@ class Users(UserMixin, db.Model):
             return False, [str(erreur)]
         
     def identification(pseudo_user, password_user):  # Modifier cette méthode
-        user = Users.query.filter_by(pseudo_user=pseudo_user).first()
+        user = users.query.filter_by(pseudo_user=pseudo_user).first()
         if user and user.password_user == password_user:
             return user
         return None
 
 class Role(db.Model):
-    id_role = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     role = db.Column(db.String(35))
     is_admin = db.Column(db.Boolean, default=False)
     description = db.Column(db.String(35))
