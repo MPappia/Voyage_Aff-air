@@ -6,7 +6,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Mon Application{% endblock %}</title>
-  <!-- Inclure ici les liens vers les fichiers CSS, les bibliothèques JavaScript, etc. -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -39,7 +38,5 @@
     <p>&copy; {{ year }} Voyage d'Aff'air. All rights reserved.</p>
   </footer>
 
-  <!-- Inclure ici les liens vers les bibliothèques JavaScript, scripts personnalisés, etc. -->
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

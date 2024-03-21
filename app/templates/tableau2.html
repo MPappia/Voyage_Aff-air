@@ -3,13 +3,17 @@
 {% extends "base.html" %}
 {% block title %}Tableau de données{% endblock %}
 {% block content %}
+<h2 class="databoard">Jeu de données</h2>
+<p class="databoard">Si vous désirez télécharger le jeu de données travaillées par l'équipe de Voyage d'Aff'air, ça se passe ci-dessous !</p>
+<p class="databoard">Vous pouvez également consulter le tableau de données ci-dessous.</p>
+<div class="button-container">
+    <a href="{{ url_for('download') }}" class="download">Download</a>
+</div>
+<br>
+<h3 class="databoard">Tableau de données</h3>
 <div class="tableau2">
-    <h2 class="databoard">Tableau de données</h2>
-    <a href="{{ url_for('download') }}">Download</a>
-    <!-- Affichez le tableau HTML généré à partir du DataFrame pandas -->
     {{ tableau_html | safe }}
 </div>
-    <!-- Affichez les contrôles de pagination -->
 <div class="pagination">
     {{ pagination.links }}
 </div>

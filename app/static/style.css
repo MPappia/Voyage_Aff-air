@@ -184,21 +184,92 @@ a:hover {
   background-color: transparent; /* Couleur de l'arrière-plan de la barre de défilement */
 }
 
-/*Style tableau2 */
+/*Style tableau */
 
-.tableau2{
+.databoard {
+  margin: 20px auto;
+  max-width: 90%;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.button-container {
+  text-align: center; /* Centrer le contenu */
+  margin-top: 20px; /* Espacement par rapport au paragraphe */
+}
+
+.download {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: rgb(227 104 102);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.download:hover {
+  background-color: #da2b2b; /* Couleur de fond du bouton au survol */
+}
+
+/* Style du tableau */
+.tableau2 {
   margin: auto; /* Pour centrer le contenu */
   max-width: 90%; /* Pour limiter la largeur maximale du contenu */
-  overflow-x: auto; /* Pour ajouter une barre de défilement horizontale si nécessaire */
+  overflow-x: auto; /* Pour ajouter une barre de défilement horizontale si nécessaire */;
 }
 
-.databoard{
-  margin-top: 50px;
-  text-align: center;
+/* Style des cellules du tableau */
+.tableau2 td,
+.tableau2 th {
+  padding: 10px; /* Ajoutez un espace autour du texte */
+  text-align: center; /* Centrez le texte dans les cellules */
+  color: #f1b180; /* Couleur du texte (saumon) */
 }
 
-.pagination{
-  margin-top: 40px;
-  width: 10%;
-  text-align: center;
+/* Style des en-têtes de colonne */
+.tableau2 th {
+  background-color: #9c6125; /* Couleur de fond des en-têtes (blanc) */
+}
+
+/* Style des lignes impaires */
+.tableau2 tr:nth-child(odd) {
+  background-color: #ffffff; /* Couleur de fond des lignes impaires (blanc) */
+}
+
+/* Style des lignes paires */
+.tableau2 tr:nth-child(even) {
+  background-color: #9c6125; /* Couleur de fond des lignes paires (saumon) */
+}
+
+/* Style du survol des lignes */
+.tableau2 tr:hover {
+  background-color: #da2b2b; /* Couleur de fond au survol des lignes */
+}
+
+/* Style de la pagination */
+.pagination {
+  margin-top: 20px; /* Réduisez l'espace supérieur */
+  justify-content: center; /* Centrez la pagination */
+}
+
+/* Style des liens de pagination */
+.pagination a {
+  font-size: 14px; /* Réduisez la taille du texte */
+  padding: 4px 8px; /* Réduisez l'espacement autour du texte */
+}
+
+/* Style du texte actif de la pagination */
+.pagination .active {
+  font-weight: bold; /* Mettez en gras le texte actif */
+}
+
+/* Style des liens de navigation de la pagination */
+.pagination .page-link {
+  color: #ffffff; /* Couleur du texte (saumon) */
+}
+
+/* Style du survol des liens de pagination */
+.pagination a:hover {
+  background-color: #da2b2b; /* Couleur de fond au survol */
 }
