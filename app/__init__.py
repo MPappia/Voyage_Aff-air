@@ -6,12 +6,13 @@ from flask_login import LoginManager
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
+
 app = Flask(__name__)
 app.config.from_object(Config)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projet.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.config['UPLOAD_FOLDER'] = 'app/static/data/upload'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -43,3 +44,4 @@ init_admin()
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+

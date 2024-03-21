@@ -1,0 +1,16 @@
+<!-- templates/tableau2.html -->
+
+{% extends "base.html" %}
+{% block title %}Tableau de données{% endblock %}
+{% block content %}
+<div class="tableau2">
+    <h2 class="databoard">Tableau de données</h2>
+
+    <!-- Affichez le tableau HTML généré à partir du DataFrame pandas -->
+    {{ tableau_html | safe }}
+</div>
+    <!-- Affichez les contrôles de pagination -->
+<div class="pagination">
+    {{ pagination.links }}
+</div>
+{% endblock %}

@@ -84,13 +84,14 @@ class _depla_domicile_F_(db.Model):
     mairie_id = db.Column(db.Integer, db.ForeignKey('Mairie_Services.id'), nullable=False)
 
     # relations 
-    depla_F_to_person_optional = relationship("_person_", back_populates="person_to_depla_F_optional", uselist=False, overlaps="depla_F_to_person")
-    depla_F_to_person = relationship("_person_", back_populates="person_to_depla_F", uselist=False)
+    depla_F_to_person_optional = relationship("_person_", back_populates="person_to_depla_F_optional", uselist=False, overlaps="person_to_depla_F", viewonly=True)
+    depla_F_to_person = relationship("_person_", back_populates="person_to_depla_F", uselist=False, overlaps="person_to_depla_F_optional", viewonly=True)
     depla_F_to_ville = relationship("_ville_", back_populates="ville_to_deplace_F")
     
     def __repr__(self):
         return f"Depla_domicile_F('{self.id}', '{self.person_id}', '{self.ville_id}', '{self.date}', '{self.mairie_id}')"
-    
+
+
 class _ville_(db.Model):
     __tablename__ = "Ville"
 

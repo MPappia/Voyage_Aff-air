@@ -183,3 +183,22 @@ a:hover {
 ::-webkit-scrollbar-track {
   background-color: transparent; /* Couleur de l'arrière-plan de la barre de défilement */
 }
+
+/*Style tableau2 */
+
+.tableau2{
+  margin: auto; /* Pour centrer le contenu */
+  max-width: 90%; /* Pour limiter la largeur maximale du contenu */
+  overflow-x: auto; /* Pour ajouter une barre de défilement horizontale si nécessaire */
+}
+
+.databoard{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.pagination{
+  margin-top: 40px;
+  width: 10%;
+  text-align: center;
+}
