@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash, send_from_directory
+from flask import send_file, render_template, redirect, url_for, flash
 import csv, os
 from app import app, db, login_manager
 from app.models import users, _person_
@@ -103,3 +103,8 @@ def tableau():
     # Renvoyez le modèle HTML avec le tableau et la pagination
     return render_template('tableau2.html', title='Tableau de données',
                            tableau_html=tableau_html, pagination=pagination)
+
+@app.route('/download')
+def download():
+    p = "/Users/mpappia/Desktop/Voyage_Aff-air/data/prez_data.csv"
+    return send_file(p, as_attachment=True)
