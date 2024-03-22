@@ -195,6 +195,21 @@ a:hover {
   background-color: transparent; /* Couleur de l'arrière-plan de la barre de défilement */
 }
 
+/*Style About*/
+.logo-no-border {
+  border: none;
+  padding: 50px 20px;
+  margin: 50px;
+}
+
+.logo-link:hover {
+  background-color: transparent; /* Retirez la couleur de fond au survol */
+  color: inherit; /* Utilisez la couleur de texte par défaut */
+  text-decoration: none; /* Retirez le soulignement */
+}
+
+
+
 /*Style tableau */
 
 .databoard {
@@ -283,10 +298,4 @@ a:hover {
 /* Style du survol des liens de pagination */
 .pagination a:hover {
   background-color: #da2b2b; /* Couleur de fond au survol */
-}
-
-/*Style About*/
-.logo-no-border {
-  border: none;
-  padding: 10px 20px;
 }
