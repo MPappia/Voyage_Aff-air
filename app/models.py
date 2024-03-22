@@ -2,7 +2,7 @@ from app import db, login_manager
 from datetime import datetime
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class _person_(db.Model):
     __tablename__ = "Person"
@@ -137,12 +137,27 @@ class _continent_(db.Model):
 
 #models utilisateurs / authentification
 
-class users(db.Model):
+class users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email_user = db.Column(db.String(120), unique=True, nullable=False)
     pseudo_user = db.Column(db.String(64), unique=True, nullable=False)
     password_user = db.Column(db.String(128), nullable=False)
     id_role = db.Column(db.Integer, db.ForeignKey('role.id'))
+
+    # Méthodes requises par Flask-Login
+    def get_id(self):
+        return str(self.id)
+
+    @property
+    def is_authenticated(self):
+        return True  # À adapter selon votre logique d'authentification
+
+    @staticmethod
+    def identification(pseudo_user, password_user):
+        user = users.query.filter_by(pseudo_user=pseudo_user).first()
+        if user and check_password_hash(user.password_user, password_user):
+            return user
+        return None
 
     @staticmethod
     def ajout(email_user, pseudo_user, password_user):
@@ -175,15 +190,21 @@ class users(db.Model):
             return True, utilisateur
         except Exception as erreur:
             return False, [str(erreur)]
-        
-    def identification(pseudo_user, password_user):  # Modifier cette méthode
-        user = users.query.filter_by(pseudo_user=pseudo_user).first()
-        if user and user.password_user == password_user:
-            return user
-        return None
 
 class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     role = db.Column(db.String(35))
     is_admin = db.Column(db.Boolean, default=False)
     description = db.Column(db.String(35))
+
+    def __repr__(self):
+        return f"Role('{self.id}', '{self.role}', '{self.is_admin}', '{self.description}')"
+
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    id_user = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    content = db.Column(db.String(255), nullable=False)
+
+    def __repr__(self):
+        return f"Comment('{self.id_user}', '{self.created_at}', '{self.content}')"

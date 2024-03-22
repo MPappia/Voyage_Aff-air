@@ -1,9 +1,9 @@
-from flask import send_file, render_template, redirect, url_for, flash
+from flask import send_file, render_template, redirect, url_for, flash, request
 import csv, os
 from app import app, db, login_manager
-from app.models import users, _person_
+from app.models import users as User, Comment
 from flask_login import current_user, login_user, logout_user, login_required
-from app.formulaire import RegistrationForm, LoginForm
+from app.formulaire import RegistrationForm, LoginForm, CommentForm
 from app.utils.truncateval import truncate_json, truncate_json_string
 from datetime import datetime
 from app.utils.transformations import clean_arg
@@ -32,13 +32,13 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         # Vérifier si le pseudo utilisateur est déjà pris
-        existing_user = users.query.filter_by(pseudo_user=form.pseudo_user.data).first()
+        existing_user = User.query.filter_by(pseudo_user=form.pseudo_user.data).first()
         if existing_user:
             flash('Le pseudo est déjà pris. Veuillez choisir un autre pseudo.', 'danger')
             return render_template('register.html', title='Inscription', form=form)
         
         # Si le pseudo n'est pas déjà pris, ajouter l'utilisateur à la base de données
-        user = users(pseudo_user=form.pseudo_user.data, email_user=form.email_user.data,
+        user = User(pseudo_user=form.pseudo_user.data, email_user=form.email_user.data,
                     password_user=form.password_user.data, id_role=1)  # Ajoutez l'ID du rôle approprié
         db.session.add(user)
         db.session.commit()
@@ -50,23 +50,25 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = users.query.filter_by(pseudo_user=form.pseudo_user.data).first()
+        user = User.query.filter_by(pseudo_user=form.pseudo_user.data).first()
         if user and user.password_user == form.password_user.data:
+            login_user(user)  # Authentification de l'utilisateur
             flash('Vous êtes connecté avec succès !', 'success')
             return redirect(url_for('index'))
         else:
             flash('Pseudo ou mot de passe incorrect.', 'danger')
     return render_template('login.html', title='Connexion', form=form)
 
+
 @app.route('/logout')
 def logout():
-    logout_user()
-    flash('You have been logged out.', 'success')
+    logout_user()  # Déconnexion de l'utilisateur
+    flash('Vous avez été déconnecté.', 'success')
     return redirect(url_for('index'))
 
 @login_manager.user_loader
 def load_user(user_id):
-    return users.query.get(int(user_id))
+    return User.query.get(int(user_id))
 
 # Page Tableau données
 
@@ -113,3 +115,25 @@ def download():
 @app.route('/about')
 def about():
     return render_template('about.html', title='À propos')
+
+#Page Visualitation Dash
+@app.route('/visualisation', methods=['GET', 'POST'])
+@login_required  # Ajoutez ce décorateur pour vérifier si l'utilisateur est connecté
+def visualisation():
+    # Créer une instance du formulaire de commentaire
+    form = CommentForm()
+
+    # Récupérer les commentaires existants depuis la base de données
+    comments = Comment.query.all()
+
+    # Traitement de la soumission du formulaire
+    if form.validate_on_submit():
+        # Créer une instance de commentaire et attribuer l'utilisateur actuel
+        comment = Comment(id_user=current_user.id, content=form.content.data)
+        db.session.add(comment)
+        db.session.commit()
+        flash('Votre commentaire a été ajouté avec succès!', 'success')
+        return redirect(url_for('visualisation'))
+
+    # Rendre le modèle HTML avec les commentaires et le formulaire
+    return render_template('visualisation.html', title='Visualisation', comments=comments, form=form)

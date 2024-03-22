@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 class RegistrationForm(FlaskForm):
@@ -13,3 +13,7 @@ class LoginForm(FlaskForm):
     password_user = PasswordField('Mot de passe', validators=[DataRequired()])
     pseudo_user = StringField('Pseudo', validators=[DataRequired()])
     submit = SubmitField('Se connecter')
+
+class CommentForm(FlaskForm):
+    content = TextAreaField('Contenu', validators=[DataRequired()])
+    submit = SubmitField('Ajouter un commentaire')

@@ -1,8 +1,8 @@
 """Initial migration
 
-Revision ID: 0385939c16e5
+Revision ID: 7e9ad25624d9
 Revises: 
-Create Date: 2024-03-20 22:05:43.097107
+Create Date: 2024-03-22 22:18:34.879597
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0385939c16e5'
+revision = '7e9ad25624d9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -64,6 +64,14 @@ def upgrade():
     sa.ForeignKeyConstraint(['nationalite_code'], ['pays.id'], ),
     sa.PrimaryKeyConstraint('id', 'nationalite_code')
     )
+    op.create_table('comment',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('id_user', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('content', sa.String(length=255), nullable=False),
+    sa.ForeignKeyConstraint(['id_user'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('Depla_etranger_A',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('person_id', sa.Integer(), nullable=False),
@@ -112,6 +120,7 @@ def downgrade():
     op.drop_table('Mairie_Services')
     op.drop_table('Depla_etranger_F')
     op.drop_table('Depla_etranger_A')
+    op.drop_table('comment')
     op.drop_table('Person')
     op.drop_table('users')
     op.drop_table('pays')

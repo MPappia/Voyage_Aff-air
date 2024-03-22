@@ -10,7 +10,7 @@ from flask_admin.contrib.sqla import ModelView
 app = Flask(__name__)
 app.config.from_object(Config)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projet.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/mpappia/Desktop/Voyage_Aff-air/data/projet2.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
