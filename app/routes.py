@@ -108,3 +108,8 @@ def tableau():
 def download():
     p = "/Users/mpappia/Desktop/Voyage_Aff-air/data/prez_data.csv"
     return send_file(p, as_attachment=True)
+
+#Page À propos
+@app.route('/about')
+def about():
+    return render_template('about.html', title='À propos')

@@ -80,6 +80,8 @@ footer {
   height: auto; /* Cela garantit que la hauteur est ajustée proportionnellement à la largeur */
 }
 
+
+
 /* Index */
 .text-center {
   text-align: center;
@@ -281,4 +283,10 @@ a:hover {
 /* Style du survol des liens de pagination */
 .pagination a:hover {
   background-color: #da2b2b; /* Couleur de fond au survol */
+}
+
+/*Style About*/
+.logo-no-border {
+  border: none;
+  padding: 10px 20px;
 }
