@@ -3,8 +3,8 @@
 /* Mise en page générale */
 body {
   font-family: 'Courier New', Courier, monospace;
-  background-color: #f1b180; /* Couleur de fond saumon */
-  color: #fff; /* Texte en blanc */
+  background-color: #f1b180; 
+  color: #fff;
 }
 
 .container {
@@ -17,6 +17,7 @@ body {
 nav ul {
   list-style-type: none;
   margin: 0;
+  margin-bottom: 100px;
   padding: 0;
   display: flex;
 }
@@ -27,7 +28,7 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: #ffffff; /* Texte en blanc */
+  color: #ffffff;
   font-weight: bold;
 }
 
@@ -40,7 +41,7 @@ nav ul li a:hover {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: space-between; /* Aligner les éléments à droite */
+  justify-content: space-between; 
 }
 
 .current_user {
@@ -54,7 +55,7 @@ nav ul li a:hover {
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 41px; /* Ajustez la taille selon vos besoins */
+  width: 41px; 
   height: auto;
 }
 
@@ -76,8 +77,8 @@ footer {
 
 /* Images */
 .logo {
-  width: 170px; /* Définissez la taille de votre logo */
-  height: auto; /* Cela garantit que la hauteur est ajustée proportionnellement à la largeur */
+  width: 170px; 
+  height: auto; 
 }
 
 
@@ -88,6 +89,13 @@ footer {
 }
 
 /* Connexion / Inscription */
+
+.loginh2, .registh2{
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
 .form-container {
   width: 300px;
   margin: 0 auto;

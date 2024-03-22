@@ -3,7 +3,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Inscription</h2>
+  <h2 class="registh2">Inscription</h2>
   <div class="form-container">
     <form method="post" action="{{ url_for('register') }}">
       {{ form.hidden_tag() }}
