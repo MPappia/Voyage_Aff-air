@@ -118,7 +118,6 @@ def about():
 
 #Page Visualitation Dash
 @app.route('/visualisation', methods=['GET', 'POST'])
-@login_required  # Ajoutez ce décorateur pour vérifier si l'utilisateur est connecté
 def visualisation():
     # Créer une instance du formulaire de commentaire
     form = CommentForm()

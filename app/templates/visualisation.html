@@ -1,33 +1,35 @@
-<!-- templates/visualisation.html -->
+{% extends "base.html" %}
+
+{% block title %}Visualisation{% endblock %}
 
 {% block content %}
-  <div class="text-center">
-    <h2>Visualisation des données</h2>
-    <br>
-    <p>Page de visualisation des données via Dash, framework python.</p>
-    <br>
-  </div>
-  <div class="comment-form">
-    <h3>Ajouter un commentaire</h3>
-    <form id="comment-form" method="post" action="{{ url_for('visualisation') }}" data-authenticated="{{ current_user.is_authenticated }}">
-      {{ form.hidden_tag() }}
-      <div class="form-group">
-        {{ form.content.label }}
-        {{ form.content(class="form-control") }}
-      </div>
-      <div class="form-group">
-        {{ form.submit(class="btn btn-primary") }}
-      </div>
-    </form>
-  </div>
+<div class="text-center">
+  <h2>Visualisation des données</h2>
+  <br>
+  <p>Page de visualisation des données via Dash, framework python.</p>
+  <br>
+</div>
+<div class="comment-form">
+  <h3>Ajouter un commentaire</h3>
+  <form id="comment-form" method="post" action="{{ url_for('visualisation') }}" data-authenticated="{{ current_user.is_authenticated }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.content.label }}
+      {{ form.content(class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+</div>
 
-  <script>
-    document.getElementById('comment-form').addEventListener('submit', function(event) {
-      var isAuthenticated = this.dataset.authenticated === 'True';
-      if (!isAuthenticated) {
-        event.preventDefault();
-        alert('Veuillez vous connecter pour ajouter un commentaire.');
-      }
-    });
-  </script>
+<script>
+  document.getElementById('comment-form').addEventListener('submit', function(event) {
+    var isAuthenticated = this.dataset.authenticated === 'True';
+    if (!isAuthenticated) {
+      event.preventDefault();
+      alert('Veuillez vous connecter pour ajouter un commentaire.');
+    }
+  });
+</script>
 {% endblock %}
