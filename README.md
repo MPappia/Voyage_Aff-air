@@ -27,9 +27,3 @@ pip install pandas
 ```
 python3 run.py
 ```
-
-
-
-
-
-4. 
