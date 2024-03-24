@@ -315,3 +315,10 @@ a:hover {
   align-items: center;
   margin: 20px;
 }
+
+#heatmap-container-2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
