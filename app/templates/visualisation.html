@@ -29,19 +29,30 @@
   </div>
 <br>
 <br>
-<div class="comment-form">
-  <h3>Ajouter un commentaire</h3>
-  <form id="comment-form" method="post" action="{{ url_for('visualisation') }}" data-authenticated="{{ current_user.is_authenticated }}">
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-      {{ form.content.label }}
-      {{ form.content(class="form-control") }}
+<h3>Commentaires</h3>
+<div class="comment-section">
+  {% for comment in comments %}
+    <div class="comment">
+      <p>{{ comment.content }}</p>
+      <p>Par : {{ comment.pseudo }}</p> <!-- Accès au pseudo de l'utilisateur qui a posté le commentaire -->
     </div>
-    <div class="form-group">
-      {{ form.submit(class="btn btn-primary") }}
-    </div>
-  </form>
+  {% endfor %}
 </div>
+  <br>
+  <br>
+  <div class="comment-form">
+    <h3>Ajouter un commentaire</h3>
+    <form id="comment-form" method="post" action="{{ url_for('visualisation') }}" data-authenticated="{{ current_user.is_authenticated }}">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        {{ form.content.label }}
+        {{ form.content(class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+      </div>
+    </form>
+  </div>
 
 <script>
   document.getElementById('comment-form').addEventListener('submit', function(event) {

@@ -322,3 +322,25 @@ a:hover {
   align-items: center;
   margin: 20px;
 }
+
+/*Dataviz commentaires*/
+/* Ajouter un encadrement blanc et arrondi à l'espace des commentaires */
+.comment-section {
+  border: 1px solid #dddddd; /* Réduire l'épaisseur de la bordure à 1px */
+  border-radius: 10px; /* Conserver les coins arrondis de 10px */
+  margin-right: auto; 
+  margin-left: auto; 
+  padding: 10px; /* Ajouter un espace intérieur de 10px */
+  max-width: 800px; /* Limiter la largeur maximale à 800px */
+}
+
+
+/* Style des commentaires individuels */
+.comment {
+  margin-bottom: 15px; /* Espacement entre les commentaires */
+  border-bottom: 1px solid #dddddd; /* Bordure inférieure de 1px solide grise */
+}
+
+.comment:last-child {
+  border-bottom: none; /* Supprimer la bordure inférieure du dernier commentaire */
+}

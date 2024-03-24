@@ -12,7 +12,7 @@ from flask_admin.contrib.sqla import ModelView
 app = Flask(__name__)
 app.config.from_object(Config)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/mpappia/Desktop/Voyage_Aff-air/app/data/db_intern.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/mpappia/Desktop/Voyage_Aff-air/app/data/db_intern1.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -38,8 +38,8 @@ def init_admin():
         form_columns = ('pseudo_user', 'email_user', 'password_user', 'id_role')
     
     class CommentAdminView(ModelView):
-        column_list = ('id', 'id_user', 'created_at', 'content')
-        form_columns = ('id_user', 'content')  # Colonnes du formulaire d'édition
+        column_list = ('id','id_user','pseudo', 'created_at', 'content')
+        form_columns = ('id_user','pseudo','content')  # Colonnes du formulaire d'édition
 
     admin.add_view(UserAdminView(User, db.session))
     admin.add_view(CommentAdminView(Comment, db.session))
