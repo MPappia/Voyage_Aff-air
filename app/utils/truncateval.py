@@ -36,3 +36,10 @@ def truncate_json_string(json_string, max_length):
         return truncated_json
     else:
         return json_string
+    
+def extract_coordinates(point):
+    try:
+        coordinates = point.strip('[]').split(', ')
+        return float(coordinates[0]), float(coordinates[1])
+    except (AttributeError, ValueError, IndexError):
+        return None, None

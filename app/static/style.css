@@ -307,3 +307,11 @@ a:hover {
 .pagination a:hover {
   background-color: #da2b2b; /* Couleur de fond au survol */
 }
+
+/*Carte Viz*/
+#heatmap-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}

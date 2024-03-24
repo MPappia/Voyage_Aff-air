@@ -6,10 +6,11 @@ from app import app, db, login_manager as login
 from app.models import users as User, Comment
 from flask_login import current_user, login_user, logout_user, login_required
 from app.formulaire import RegistrationForm, LoginForm, CommentForm
-from app.utils.truncateval import truncate_json, truncate_json_string
+from app.utils.truncateval import extract_coordinates, truncate_json_string
 from datetime import datetime
 from app.utils.transformations import clean_arg
 from flask_paginate import Pagination, get_page_args
+import plotly.graph_objs as go
 import pandas as pd
 
 
@@ -134,6 +135,41 @@ def visualisation():
     # Récupérer les commentaires existants depuis la base de données
     comments = Comment.query.all()
 
+    # Lisez les données à partir du nouveau fichier CSV
+    df = pd.read_csv('/Users/mpappia/Desktop/Voyage_Aff-air/app/static/data/prez-us_data.csv')
+
+    # Groupez les données par pays et comptez le nombre de visites pour chaque pays
+    visits_by_country = df['Code_pays'].value_counts().reset_index()
+    visits_by_country.columns = ['Code_pays', 'Nombre de visites']
+
+    # Chargez les données de la carte du monde
+    world_map = go.Choropleth(
+        locations=visits_by_country['Code_pays'],
+        z=visits_by_country['Nombre de visites'],
+        locationmode='ISO-3',
+        colorscale='Viridis',
+        reversescale=True,
+        colorbar_title='Nombre de visites'
+    )
+
+    # Mise en forme de la mise en page de la carte
+    layout = go.Layout(
+        title='Carte des visites du POTUS (President of the United States) par pays',
+        geo=dict(
+            showframe=False,
+            showcoastlines=True,
+            projection_type='mercator',
+        ), 
+        width=800,
+        height=600,
+    )
+
+    # Créer la figure de la carte
+    fig = go.Figure(data=[world_map], layout=layout)
+
+    # Convertissez la figure en HTML
+    heatmap_html = fig.to_html(full_html=False)
+
     # Traitement de la soumission du formulaire
     if form.validate_on_submit():
         # Créer une instance de commentaire et attribuer l'utilisateur actuel
@@ -144,4 +180,4 @@ def visualisation():
         return redirect(url_for('visualisation'))
 
     # Rendre le modèle HTML avec les commentaires et le formulaire
-    return render_template('visualisation.html', title='Visualisation', comments=comments, form=form)
+    return render_template('visualisation.html', title='Visualisation', heatmap_html=heatmap_html, comments=comments, form=form)
