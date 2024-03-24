@@ -1,3 +1,5 @@
+#__init_.py
+
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
@@ -25,7 +27,7 @@ login_manager.login_view = 'login'  # par exemple
 #TEST ADMIN
 
 # Importez vos modèles après avoir initialisé db et login_manager
-from app.models import users as User
+from app.models import users as User, Comment
 
 # Déplacez l'importation de users et la création de la vue d'administration ici
 def init_admin():
@@ -34,8 +36,13 @@ def init_admin():
     class UserAdminView(ModelView):
         column_list = ('id', 'pseudo_user', 'email_user')
         form_columns = ('pseudo_user', 'email_user', 'password_user', 'id_role')
+    
+    class CommentAdminView(ModelView):
+        column_list = ('id', 'id_user', 'created_at', 'content')
+        form_columns = ('id_user', 'content')  # Colonnes du formulaire d'édition
 
     admin.add_view(UserAdminView(User, db.session))
+    admin.add_view(CommentAdminView(Comment, db.session))
 
 # Appelez init_admin pour initialiser l'interface d'administration
 init_admin()
