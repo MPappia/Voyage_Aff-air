@@ -1,6 +1,6 @@
 #models.py
 
-from app import db, login_manager
+from app import db, login_manager as login
 from datetime import datetime
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
@@ -148,15 +148,18 @@ class users(db.Model, UserMixin):
 
     # Méthodes requises par Flask-Login
     def get_id(self):
-        return str(self.id)
+        return self.id
 
+    @login.user_loader
+    def get_user_by_id(id):
+        return users.query.get(int(id))
     @property
     def is_authenticated(self):
         return True  # À adapter selon votre logique d'authentification
 
     @staticmethod
     def identification(pseudo_user, password_user):
-        user = users.query.filter_by(pseudo_user=pseudo_user).first()
+        user = users.query.filter(pseudo_user==pseudo_user).first()
         if user and check_password_hash(user.password_user, password_user):
             return user
         return None

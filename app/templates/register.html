@@ -10,18 +10,30 @@
       <div class="form-group">
         {{ form.pseudo_user.label(class="form-control-label") }}
         {{ form.pseudo_user(class="form-control form-control-lg", placeholder="Pseudo") }}
+        {% for error in form.pseudo_user.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
       </div>
       <div class="form-group">
         {{ form.email_user.label(class="form-control-label") }}
         {{ form.email_user(class="form-control form-control-lg", placeholder="Email") }}
+        {% for error in form.email_user.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
       </div>
       <div class="form-group">
         {{ form.password_user.label(class="form-control-label") }}
         {{ form.password_user(class="form-control form-control-lg", placeholder="Mot de passe") }}
+        {% for error in form.password_user.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
       </div>
       <div class="form-group">
         {{ form.confirm_password.label(class="form-control-label") }}
         {{ form.confirm_password(class="form-control form-control-lg", placeholder="Confirmer le mot de passe") }}
+        {% for error in form.confirm_password.errors %}
+          <span class="text-danger">{{ error }}</span>
+        {% endfor %}
       </div>
       <div class="form-group">
         {{ form.submit(class="btn btn-primary btn-lg", value="S'inscrire") }}

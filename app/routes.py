@@ -2,7 +2,7 @@
 
 from flask import send_file, render_template, redirect, url_for, flash, request
 import csv, os
-from app import app, db, login_manager
+from app import app, db, login_manager as login
 from app.models import users as User, Comment
 from flask_login import current_user, login_user, logout_user, login_required
 from app.formulaire import RegistrationForm, LoginForm, CommentForm
@@ -51,26 +51,33 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+
+    if current_user.is_authenticated is True:
+        flash('Vous êtes déjà connecté.', 'info')
+        return redirect(url_for('index'))
+
     if form.validate_on_submit():
-        user = User.query.filter_by(pseudo_user=form.pseudo_user.data).first()
-        if user and user.password_user == form.password_user.data:
-            login_user(user)  # Authentification de l'utilisateur
-            flash('Vous êtes connecté avec succès !', 'success')
+        user = User.identification(
+            pseudo=clean_arg(request.form.get('pseudo_user', None)),
+            password=clean_arg(request.form.get('password_user', None))
+        )
+        if user:
+            flash('Connexion réussie.', 'success')
+            login_user(user)
             return redirect(url_for('index'))
         else:
-            flash('Pseudo ou mot de passe incorrect.', 'danger')
-    return render_template('login.html', title='Connexion', form=form)
-
+            flash('Identifiants incorrects.', 'danger')
+            return render_template('login.html', title='Connexion', form=form)
+    else:
+        return render_template('login.html', title='Connexion', form=form)
+login.login_view = 'login'
 
 @app.route('/logout')
 def logout():
-    logout_user()  # Déconnexion de l'utilisateur
+    if current_user.is_authenticated is True:
+        logout_user()
     flash('Vous avez été déconnecté.', 'success')
     return redirect(url_for('index'))
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 # Page Tableau données
 
