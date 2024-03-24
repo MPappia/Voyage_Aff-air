@@ -170,6 +170,47 @@ def visualisation():
     # Convertissez la figure en HTML
     heatmap_html = fig.to_html(full_html=False)
 
+    # Seconde Carte
+    # Lisez les données à partir du nouveau fichier CSV
+    df = pd.read_csv('/Users/mpappia/Desktop/Voyage_Aff-air/app/static/data/prez_data_2.csv', sep=';')
+
+    # Filtrez les données en fonction du paramètre de filtre (leader)
+    leader = request.args.get('leader')  # Récupérez la valeur du paramètre de filtre
+    if leader:
+        df = df[df['Fonction'] == leader]
+
+    # Groupez les données par pays et comptez le nombre de visites pour chaque pays
+    visits_by_country = df['Code pays'].value_counts().reset_index()
+    visits_by_country.columns = ['Code pays', 'Nombre de visites']
+
+    # Chargez les données de la carte du monde
+    world_map = go.Choropleth(
+        locations=visits_by_country['Code pays'],
+        z=visits_by_country['Nombre de visites'],
+        locationmode='ISO-3',
+        colorscale='Viridis',
+        reversescale=True,
+        colorbar_title='Nombre de visites'
+    )
+
+    # Mise en forme de la mise en page de la carte
+    layout = go.Layout(
+        title=f'Carte des visites des {leader} par pays',
+        geo=dict(
+            showframe=False,
+            showcoastlines=True,
+            projection_type='mercator',
+        ), 
+        width=800,
+        height=600,
+    )
+
+    # Créer la figure de la carte
+    fig = go.Figure(data=[world_map], layout=layout)
+
+    # Convertissez la figure en HTML
+    heatmap2_html = fig.to_html(full_html=False)
+
     # Traitement de la soumission du formulaire
     if form.validate_on_submit():
         # Créer une instance de commentaire et attribuer l'utilisateur actuel
@@ -180,4 +221,4 @@ def visualisation():
         return redirect(url_for('visualisation'))
 
     # Rendre le modèle HTML avec les commentaires et le formulaire
-    return render_template('visualisation.html', title='Visualisation', heatmap_html=heatmap_html, comments=comments, form=form)
+    return render_template('visualisation.html', title='Visualisation', heatmap_html=heatmap_html, heatmap2_html=heatmap2_html,comments=comments, form=form)
