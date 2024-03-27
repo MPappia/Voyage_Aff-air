@@ -5,7 +5,7 @@ M2 TNAH group project - Application for highlighting data concerning the travel 
 
 ### Pour démarrer notre application, suivez les étapes ci-dessous :
 
-#### Ouvrir le premier terminal
+#### __Ouvrir le premier terminal__
 - **Sous macOS ou Linux** : utiliser le raccourci `Ctrl+Alt+T` (sous Linux) ou `Cmd+Space` pour ouvrir Spotlight, puis taper `Terminal` et appuyer sur `Entrée` (sous macOS).
 - **Sous Windows** :  appuyer sur `Win+R`, taper `cmd` et appuyer sur `Entrée` pour ouvrir l'invite de commande, ou taper `powershell` pour ouvrir PowerShell.
 
@@ -26,7 +26,7 @@ pip install plotly
 python app.py
 ```
 
-#### Ouvrir un nouveau terminal
+#### __Ouvrir un nouveau terminal__
 Pour ouvrir un nouveau terminal, les instructions varient en fonction de votre système d'exploitation :
 
 - **Sous macOS** : Faites un clic droit sur l'icône du terminal dans le dock, puis sélectionnez « Nouvelle fenêtre » pour ouvrir un nouveau terminal.
