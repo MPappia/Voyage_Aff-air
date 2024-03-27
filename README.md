@@ -5,6 +5,33 @@ M2 TNAH group project - Application for highlighting data concerning the travel 
 
 ### Pour démarrer notre application, suivez les étapes ci-dessous :
 
+#### Ouvrir le premier terminal
+**Sous macOS ou Linux** : utiliser le raccourci `Ctrl+Alt+T` (sous Linux) ou `Cmd+Space` pour ouvrir Spotlight, puis taper `Terminal` et appuyer sur `Entrée` (sous macOS).
+**Sous Windows** :  appuyer sur `Win+R`, taper `cmd` et appuyer sur `Entrée` pour ouvrir l'invite de commande, ou taper `powershell` pour ouvrir PowerShell.
+
+*Créer et activer un environnement virtuel*
+```
+virtualenv env -p python3
+source env/bin/activate
+```
+
+*Installer les dépendances pour dashapp*
+```
+pip install dash
+pip install plotly
+```
+
+*Démarrer dashapp*
+```
+python app.py
+```
+
+#### Ouvrir un nouveau terminal
+Pour ouvrir un nouveau terminal, les instructions varient en fonction de votre système d'exploitation :
+
+**Sous macOS** : Faites un clic droit sur l'icône du terminal dans le dock, puis sélectionnez « Nouvelle fenêtre » pour ouvrir un nouveau terminal.
+**Sur VSCode** : Allez dans `Terminal` -> `Nouveau terminal` pour ouvrir un nouveau terminal.
+
 *Créer et activer un environnement virtuel*
 ```
 virtualenv env -p python3
