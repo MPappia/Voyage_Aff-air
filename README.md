@@ -18,6 +18,7 @@ M2 TNAH group project - Application for highlighting data concerning the travel 
     ```bash
     pip install dash
     pip install plotly
+    pip install pandas
     ```
 
     *Démarrer dashapp :*
