@@ -15,7 +15,6 @@
       <ul>
         <li><a href="{{ url_for('index') }}">Accueil</a></li>
         <li><a href="{{ url_for('tableau') }}">Tableau</a></li>
-        <li><a href="{{ url_for('graphique') }}">Graphique</a></li>
         <li><a href="{{ url_for('visualisation') }}">Visualisation</a></li>
         {% if current_user.is_authenticated %}
         <li><a href="{{ url_for('logout') }}">Deconnexion</a></li>
