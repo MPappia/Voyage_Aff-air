@@ -120,7 +120,12 @@ def tableau():
 def download():
     p = "/Users/mpappia/Desktop/Voyage_Aff-air/data/prez_data.csv"
     return send_file(p, as_attachment=True)
-
+    
+#Page graphique
+@app.route('/graphique')
+def graphique():
+    return render_template('graphique.html', title='À propos')
+    
 #Page À propos
 @app.route('/about')
 def about():
