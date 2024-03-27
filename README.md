@@ -21,6 +21,7 @@ pip install flask_admin
 pip install flask_wtf
 pip install flask_paginate
 pip install pandas
+pip install plotly
 ```
 
 *Démarrer l'application*
