@@ -5,8 +5,8 @@ M2 TNAH group project - Application for highlighting data concerning the travel 
 ## Pour démarrer notre application, suivez les étapes ci-dessous :
 
 1. **Ouvrir le premier terminal**
-    - **Sous macOS ou Linux** : Utiliser le raccourci `Ctrl+Alt+T` (sous Linux) ou `Cmd+Space` pour ouvrir Spotlight, puis taper `Terminal` et appuyer sur `Entrée` (sous macOS).
-    - **Sous Windows** : Appuyer sur `Win+R`, taper `cmd` et appuyer sur `Entrée` pour ouvrir l'invite de commande, ou taper `powershell` pour ouvrir PowerShell.
+    - **Sous macOS ou Linux** : Utilisez le raccourci `Ctrl+Alt+T` (sous Linux) ou `Cmd+Space` pour ouvrir Spotlight, puis tapez `Terminal` et appuyez sur `Entrée` (sous macOS).
+    - **Sous Windows** : Appuyez sur `Win+R`, tapez `cmd` et appuyez sur `Entrée` pour ouvrir l'invite de commande, ou tapez `powershell` pour ouvrir PowerShell.
 
     *Créer et activer un environnement virtuel :*
     ```bash
