@@ -4,10 +4,15 @@ M2 TNAH group project - Application for highlighting data concerning the travel 
 
 ## Pour démarrer notre application, suivez les étapes ci-dessous :
 
-1. **Configuration de la base de données**
+1. **Configuration de la base de données et des fichiers csv**
     - Dans le fichier app/__init__.py : 
         - ligne 15 : app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////[chemin absolu de la db]/Voyage_Aff-air/app/data/db_intern1.db'
             - Remplacer chemin absolu de la base de donnée en réalisant un clique droit, copier le chemin, sur la base de données dans le fichier data de app.
+    - Dans le fichier app/routes.py, deux lignes :
+          - ligne 130 :    df = pd.read_csv('[chemin absolu de la db]/Voyage_Aff-air/app/data/prez-us_data.csv')
+
+          - ligne 161 :     df = pd.read_csv('[chemin absolu de la db]/Voyage_Aff-air/app/data/prez-us_data.csv', sep=';')
+
 
 2. **Ouvrir le premier terminal**
     - **Sous macOS ou Linux** : Utilisez le raccourci `Ctrl+Alt+T` (sous Linux) ou `Cmd+Space` pour ouvrir Spotlight, puis tapez `Terminal` et appuyez sur `Entrée` (sous macOS).
