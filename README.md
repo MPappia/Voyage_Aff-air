@@ -7,14 +7,14 @@ M2 TNAH group project - Application for highlighting data concerning the travel 
 1. **Configuration de la base de données et des fichiers csv**
     - Dans le fichier app/__init__.py :
       
-        - ligne 15 : app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////[chemin absolu de la db]/Voyage_Aff-air/app/data/db_intern1.db'
-            - Remplacer [chemin absolu de la db] en réalisant un clique droit, copier le chemin, sur la base de données dans le fichier app/data.
+        -> ligne 15 : app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////[chemin absolu de la db]/Voyage_Aff-air/app/data/db_intern1.db'
+        - Remplacer [chemin absolu de la db] en réalisant un clique droit, copier le chemin, sur la base de données dans le fichier app/data.
               
     - Dans le fichier app/routes.py, deux lignes :
       
-          - ligne 130 :    df = pd.read_csv('[chemin absolu du csv]/Voyage_Aff-air/app/static/data/prez-us_data.csv')
+          -> ligne 130 :    df = pd.read_csv('[chemin absolu du csv]/Voyage_Aff-air/app/static/data/prez-us_data.csv')
 
-          - ligne 161 :    df = pd.read_csv('[chemin absolu du csv]/Voyage_Aff-air/app/static/data/prez_data_2.csv', sep=';')
+          -> ligne 161 :    df = pd.read_csv('[chemin absolu du csv]/Voyage_Aff-air/app/static/data/prez_data_2.csv', sep=';')
 
        - Remplacer [chemin absolu du fichier csv] en réalisant un clique droit, copier le chemin, sur les fichiers csv dans le fichier app/static/data.
 
