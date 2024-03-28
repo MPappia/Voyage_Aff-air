@@ -9,9 +9,10 @@ M2 TNAH group project - Application for highlighting data concerning the travel 
         - ligne 15 : app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////[chemin absolu de la db]/Voyage_Aff-air/app/data/db_intern1.db'
             - Remplacer chemin absolu de la base de donnée en réalisant un clique droit, copier le chemin, sur la base de données dans le fichier data de app.
     - Dans le fichier app/routes.py, deux lignes :
+      
           - ligne 130 :    df = pd.read_csv('[chemin absolu de la db]/Voyage_Aff-air/app/data/prez-us_data.csv')
 
-          - ligne 161 :     df = pd.read_csv('[chemin absolu de la db]/Voyage_Aff-air/app/data/prez-us_data.csv', sep=';')
+          - ligne 161 :    df = pd.read_csv('[chemin absolu de la db]/Voyage_Aff-air/app/data/prez-us_data.csv', sep=';')
 
 
 2. **Ouvrir le premier terminal**
