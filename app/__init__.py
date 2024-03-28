@@ -19,17 +19,15 @@ migrate = Migrate(app, db)
 
 login_manager = LoginManager(app)
 
-from app import routes, models  # Importations après l'initialisation de l'application
+from app import routes, models 
 
 # Configurations spécifiques à la connexion
-login_manager.login_view = 'login'  # par exemple
+login_manager.login_view = 'login'  
 
-#TEST ADMIN
+#ADMIN
 
-# Importez vos modèles après avoir initialisé db et login_manager
 from app.models import users as User, Comment
 
-# Déplacez l'importation de users et la création de la vue d'administration ici
 def init_admin():
     admin = Admin(app, name='Dashboard', template_mode='bootstrap3')
 
@@ -39,12 +37,11 @@ def init_admin():
     
     class CommentAdminView(ModelView):
         column_list = ('id','id_user','pseudo', 'created_at', 'content')
-        form_columns = ('id_user','pseudo','content')  # Colonnes du formulaire d'édition
+        form_columns = ('id_user','pseudo','content')  
 
     admin.add_view(UserAdminView(User, db.session))
     admin.add_view(CommentAdminView(Comment, db.session))
 
-# Appelez init_admin pour initialiser l'interface d'administration
 init_admin()
 
 @login_manager.user_loader

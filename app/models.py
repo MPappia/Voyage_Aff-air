@@ -24,7 +24,7 @@ class users(db.Model, UserMixin):
         return users.query.get(int(id))
     @property
     def is_authenticated(self):
-        return True  # À adapter selon votre logique d'authentification
+        return True  # Toujours authentifié
 
     @staticmethod
     def identification(pseudo_user, password_user):

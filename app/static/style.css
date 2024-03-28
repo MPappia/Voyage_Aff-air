@@ -248,64 +248,58 @@ a:hover {
 
 /* Style du tableau */
 .tableau2 {
-  margin: auto; /* Pour centrer le contenu */
-  max-width: 90%; /* Pour limiter la largeur maximale du contenu */
-  overflow-x: auto; /* Pour ajouter une barre de défilement horizontale si nécessaire */;
+  margin: auto;
+  max-width: 90%;
+  overflow-x: auto;
 }
 
 /* Style des cellules du tableau */
 .tableau2 td,
 .tableau2 th {
-  padding: 10px; /* Ajoutez un espace autour du texte */
-  text-align: center; /* Centrez le texte dans les cellules */
-  color: #f1b180; /* Couleur du texte (saumon) */
+  padding: 10px;
+  text-align: center; 
+  color: #f1b180; 
 }
 
 /* Style des en-têtes de colonne */
 .tableau2 th {
-  background-color: #9c6125; /* Couleur de fond des en-têtes (blanc) */
+  background-color: #9c6125;
 }
 
-/* Style des lignes impaires */
+/* Style des lignes  */
 .tableau2 tr:nth-child(odd) {
-  background-color: #ffffff; /* Couleur de fond des lignes impaires (blanc) */
+  background-color: #ffffff; 
 }
 
-/* Style des lignes paires */
 .tableau2 tr:nth-child(even) {
-  background-color: #9c6125; /* Couleur de fond des lignes paires (saumon) */
+  background-color: #9c6125; 
 }
 
-/* Style du survol des lignes */
 .tableau2 tr:hover {
-  background-color: #da2b2b; /* Couleur de fond au survol des lignes */
+  background-color: #da2b2b;
 }
 
 /* Style de la pagination */
 .pagination {
-  margin-top: 20px; /* Réduisez l'espace supérieur */
-  justify-content: center; /* Centrez la pagination */
+  margin-top: 20px;
+  justify-content: center;
 }
 
-/* Style des liens de pagination */
 .pagination a {
-  font-size: 14px; /* Réduisez la taille du texte */
-  padding: 4px 8px; /* Réduisez l'espacement autour du texte */
+  font-size: 14px;
+  padding: 4px 8px;
 }
 
-/* Style du texte actif de la pagination */
 .pagination .active {
-  font-weight: bold; /* Mettez en gras le texte actif */
+  font-weight: bold;
 }
 
-/* Style des liens de navigation de la pagination */
 .pagination .page-link {
-  color: #ffffff; /* Couleur du texte (saumon) */
+  color: #ffffff;
 }
 
-/* Style du survol des liens de pagination */
 .pagination a:hover {
-  background-color: #da2b2b; /* Couleur de fond au survol */
+  background-color: #da2b2b;
 }
 
 /*Carte Viz*/
@@ -324,23 +318,22 @@ a:hover {
 }
 
 /*Dataviz commentaires*/
-/* Ajouter un encadrement blanc et arrondi à l'espace des commentaires */
 .comment-section {
-  border: 1px solid #dddddd; /* Réduire l'épaisseur de la bordure à 1px */
-  border-radius: 10px; /* Conserver les coins arrondis de 10px */
+  border: 1px solid #dddddd; 
+  border-radius: 10px; 
   margin-right: auto; 
   margin-left: auto; 
-  padding: 10px; /* Ajouter un espace intérieur de 10px */
-  max-width: 800px; /* Limiter la largeur maximale à 800px */
+  padding: 10px; 
+  max-width: 800px; 
 }
 
 
 /* Style des commentaires individuels */
 .comment {
-  margin-bottom: 15px; /* Espacement entre les commentaires */
-  border-bottom: 1px solid #dddddd; /* Bordure inférieure de 1px solide grise */
+  margin-bottom: 15px; 
+  border-bottom: 1px solid #dddddd; 
 }
 
 .comment:last-child {
-  border-bottom: none; /* Supprimer la bordure inférieure du dernier commentaire */
+  border-bottom: none;
 }
