@@ -127,7 +127,7 @@ def visualisation():
 
     comments = Comment.query.all()
 
-    df = pd.read_csv('/Users/mpappia/Desktop/Voyage_Aff-air/app/static/data/prez-us_data.csv')
+    df = pd.read_csv('[chemin absolu du csv]/Voyage_Aff-air/app/static/data/prez-us_data.csv')
 
     visits_by_country = df['Code_pays'].value_counts().reset_index()
     visits_by_country.columns = ['Code_pays', 'Nombre de visites']
@@ -158,7 +158,7 @@ def visualisation():
 
     # Seconde Carte
    
-    df = pd.read_csv('/Users/mpappia/Desktop/Voyage_Aff-air/app/static/data/prez_data_2.csv', sep=';')
+    df = pd.read_csv('[chemin absolu du csv]/Voyage_Aff-air/app/static/data/prez_data_2.csv', sep=';')
 
     leader = request.args.get('leader')  
     if leader:
