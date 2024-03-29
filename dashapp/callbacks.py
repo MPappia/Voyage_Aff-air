@@ -40,14 +40,14 @@ def register_callbacks(app):
     # Ajuster le titre basé sur la valeur de location_filter_2
         if location_filter_2_actual:
             location = location_filter_2
-            title = f"Destination : {location} | Fonction: {fonction_filter} | Nom: xxx | visite par année"
+            title = f"Destination : {location} | Fonction: {fonction_filter} | visite par année"
         else:
             # Si location_filter_2 est "NONE" ou non défini, construire le titre avec location_filter et fonction_filter seulement
             if location_filter == 'etrangers':
                 location_type = 'étranger'
             else:
                 location_type = 'domicile'
-            title = f"Destination : {location_type} | Fonction: {fonction_filter} | Nom: xxx | visite par année"
+            title = f"Destination : {location_type} | Fonction: {fonction_filter} | visite par année"
 
         fig = px.line(df, x='year', y='nombre_voyage', title=title, markers=True)
         return fig  # Retourner le graphique configuré
